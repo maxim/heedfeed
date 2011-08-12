@@ -6,6 +6,7 @@ class FeedsController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @feed }
+      format.rss
     end
   end
 

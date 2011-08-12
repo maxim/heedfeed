@@ -2,17 +2,17 @@
 
 <p>
   <b>Title:</b>
-  <%= @item.title %>
+  <%= sanitize(@item.title) %>
 </p>
 
 <p>
   <b>Link:</b>
-  <%= @item.link %>
+  <%= link_to @item.link, feed_item_url(@item.feed, @item) %>
 </p>
 
 <p>
   <b>Description:</b>
-  <%= @item.description %>
+  <%= sanitize(@item.description) %>
 </p>
 
 

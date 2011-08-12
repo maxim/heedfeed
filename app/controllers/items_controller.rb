@@ -5,7 +5,10 @@ class ItemsController < ApplicationController
     @item = @feed.items.find(params[:id])
 
     respond_to do |format|
-      format.html
+      format.html do
+        @item.mark_read(:from => params[:from])
+        redirect_to @item.link, :status => :found
+      end
       format.json { render json: @item }
     end
   end

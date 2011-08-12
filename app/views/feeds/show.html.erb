@@ -1,3 +1,6 @@
+<%= auto_discovery_link_tag :rss, feed_url(@feed, format: :rss), title: @feed.title %>
+<%= auto_discovery_link_tag :rss, feed_notifications_url(@feed, format: :rss), title: 'Notifications' %>
+
 <p id="notice"><%= notice %></p>
 
 <h1><%= @feed.title %></h1>
@@ -13,10 +16,10 @@
 <ul>
   <% @feed.items.each do |item| %>
     <li>
-      <h3><%= item.title %></h3>
-      <p><%= item.description %></p>
+      <h3><%= link_to item.title, feed_item_url(@feed, item) %> <span><%= read_status(item) %></span></h3>
+      Link: <%= link_to item.link, feed_item_url(@feed, item) %>
+      <p><%= sanitize(item.description) %></p>
       <p>
-        <%= link_to 'Show', feed_item_path(@feed, item) %> |
         <%= link_to 'Edit', edit_feed_item_path(item.feed, item) %>
       </p>
     </li>
