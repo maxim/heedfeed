@@ -1,15 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @feed.title %>
-</p>
+<h1><%= @feed.title %></h1>
 
 <p>
-  <b>Description:</b>
-  <%= @feed.description %>
+  <%= @feed.description %> (<%= link_to 'edit feed', edit_feed_path(@feed) %>)
 </p>
 
+<ul>
+  <% @feed.items.each do |item| %>
+    <li>
+      <h3><%= item.title %></h3>
+      <p><%= item.description %></p>
+      <p>
+        <%= link_to 'Show', feed_item_path(@feed, item) %> |
+        <%= link_to 'Edit', edit_feed_item_path(item.feed, item) %>
+      </p>
+    </li>
+  <% end %>
+</ul>
 
-<%= link_to 'Edit', edit_feed_path(@feed) %> |
-<%= link_to 'Back', feeds_path %>
+<%= link_to 'New Item', new_feed_item_path(@feed) %>

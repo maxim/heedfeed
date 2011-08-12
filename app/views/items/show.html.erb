@@ -16,5 +16,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<%= link_to 'Edit', edit_feed_item_path(@item.feed, @item) %> |
+<%= link_to 'Back', @item.feed %>

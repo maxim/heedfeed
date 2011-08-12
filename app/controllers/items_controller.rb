@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
+  before_filter :find_feed
 
   def show
-    @item = Item.find(params[:id])
+    @item = @feed.items.find(params[:id])
 
     respond_to do |format|
       format.html
@@ -10,7 +11,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @item = @feed.items.build
 
     respond_to do |format|
       format.html
@@ -19,15 +20,15 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
+    @item = @feed.items.find(params[:id])
   end
 
   def create
-    @item = Item.new(params[:item])
+    @item = @feed.items.build(params[:item])
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { redirect_to [@feed, @item], notice: 'Item was successfully created.' }
         format.json { render json: @item, status: :created, location: @item }
       else
         format.html { render action: "new" }
@@ -37,11 +38,11 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
+    @item = @feed.items.find(params[:id])
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+        format.html { redirect_to [@feed, @item], notice: 'Item was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -50,13 +51,8 @@ class ItemsController < ApplicationController
     end
   end
 
-  def destroy
-    @item = Item.find(params[:id])
-    @item.destroy
-
-    respond_to do |format|
-      format.html { redirect_to items_url }
-      format.json { head :ok }
-    end
+  private
+  def find_feed
+    @feed = Feed.find(params[:feed_id])
   end
 end

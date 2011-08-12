@@ -5,18 +5,12 @@ class FeedsControllerTest < ActionController::TestCase
     @feed = feeds(:one)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:feeds)
-  end
-
-  test "should get new" do
+  test "gets new" do
     get :new
     assert_response :success
   end
 
-  test "should create feed" do
+  test "creates feed" do
     assert_difference('Feed.count') do
       post :create, feed: @feed.attributes
     end
@@ -24,22 +18,22 @@ class FeedsControllerTest < ActionController::TestCase
     assert_redirected_to feed_path(assigns(:feed))
   end
 
-  test "should show feed" do
+  test "shows feed" do
     get :show, id: @feed.to_param
     assert_response :success
   end
 
-  test "should get edit" do
+  test "gets edit" do
     get :edit, id: @feed.to_param
     assert_response :success
   end
 
-  test "should update feed" do
+  test "updates feed" do
     put :update, id: @feed.to_param, feed: @feed.attributes
     assert_redirected_to feed_path(assigns(:feed))
   end
 
-  test "should destroy feed" do
+  test "destroys feed" do
     assert_difference('Feed.count', -1) do
       delete :destroy, id: @feed.to_param
     end
