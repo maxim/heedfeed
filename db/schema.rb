@@ -10,14 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110812044606) do
+ActiveRecord::Schema.define(:version => 20110812133923) do
 
   create_table "feeds", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "identifier"
   end
+
+  add_index "feeds", ["identifier"], :name => "index_feeds_on_identifier", :unique => true
 
   create_table "items", :force => true do |t|
     t.string   "title"

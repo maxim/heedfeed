@@ -1,7 +1,7 @@
 class FeedsController < ApplicationController
 
   def show
-    @feed = Feed.find(params[:id])
+    @feed = Feed.find_by_identifier(params[:id])
 
     respond_to do |format|
       format.html
@@ -19,7 +19,7 @@ class FeedsController < ApplicationController
   end
 
   def edit
-    @feed = Feed.find(params[:id])
+    @feed = Feed.find_by_identifier(params[:id])
   end
 
   def create
@@ -37,7 +37,7 @@ class FeedsController < ApplicationController
   end
 
   def update
-    @feed = Feed.find(params[:id])
+    @feed = Feed.find_by_identifier(params[:id])
 
     respond_to do |format|
       if @feed.update_attributes(params[:feed])
@@ -51,7 +51,7 @@ class FeedsController < ApplicationController
   end
 
   def destroy
-    @feed = Feed.find(params[:id])
+    @feed = Feed.find_by_identifier(params[:id])
     @feed.destroy
 
     respond_to do |format|

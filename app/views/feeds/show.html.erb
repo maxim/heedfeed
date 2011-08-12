@@ -6,6 +6,10 @@
   <%= @feed.description %> (<%= link_to 'edit feed', edit_feed_path(@feed) %>)
 </p>
 
+<p>
+  <%= link_to '+ Add Item', new_feed_item_path(@feed) %>
+</p>
+
 <ul>
   <% @feed.items.each do |item| %>
     <li>
@@ -18,5 +22,3 @@
     </li>
   <% end %>
 </ul>
-
-<%= link_to 'New Item', new_feed_item_path(@feed) %>

@@ -53,6 +53,6 @@ class ItemsController < ApplicationController
 
   private
   def find_feed
-    @feed = Feed.find(params[:feed_id])
+    @feed = Feed.find_by_identifier(params[:feed_id])
   end
 end
